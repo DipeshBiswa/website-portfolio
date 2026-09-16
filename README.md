@@ -1,6 +1,6 @@
 # Dipesh Biswa — Portfolio
 
-A React, TypeScript, and Tailwind CSS portfolio for Dipesh Biswa, a Software Engineering student at Rochester Institute of Technology. Warm off-white, beige, charcoal, and a restrained `#BFA57F` accent frame the introduction, education, and three equally prominent project case studies.
+A React, TypeScript, and Tailwind CSS portfolio for Dipesh Biswa, a Software Engineering student at Rochester Institute of Technology. W
 
 ## Run locally
 
