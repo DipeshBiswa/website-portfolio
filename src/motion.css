@@ -1,0 +1,400 @@
+/* A shared, soft landing gives every interaction the same rhythm. */
+:root {
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-soft: cubic-bezier(0.22, 0.68, 0, 1.02);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .site-header {
+    transition:
+      background 500ms ease,
+      box-shadow 500ms ease,
+      border-color 500ms ease;
+  }
+  .site-header[data-scrolled="true"] {
+    background: #faf8f5d6;
+    border-color: #ded7ceaa;
+    box-shadow: 0 8px 30px -20px #29272235;
+  }
+  .navigation a {
+    position: relative;
+  }
+  .navigation a::after {
+    content: "";
+    position: absolute;
+    bottom: 6px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--accent-ink);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 450ms var(--ease-out);
+  }
+  .navigation a:is(:hover, :focus-visible)::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+  .navigation a:last-child::after {
+    bottom: -1px;
+  }
+
+  /* The text resolves first; the three architectural forms settle behind it. */
+  .hero-enter {
+    animation: soft-arrival 1100ms var(--ease-out) backwards;
+    animation-delay: 70ms;
+  }
+  .hero-enter:nth-child(2) {
+    animation-delay: 140ms;
+  }
+  .hero-enter:nth-child(3) {
+    animation-delay: 230ms;
+  }
+  .hero-enter:nth-child(4) {
+    animation-delay: 320ms;
+  }
+  .hero-enter:nth-child(5) {
+    animation-delay: 410ms;
+  }
+  .hero-enter:nth-child(6) {
+    animation-delay: 490ms;
+  }
+  .hero-baseline {
+    animation: soft-arrival 1000ms 570ms var(--ease-out) backwards;
+  }
+  .hero-geometry {
+    --hero-progress: 0;
+    transform: translate3d(0, calc(var(--hero-progress) * -24px), 0)
+      scale(calc(1 + var(--hero-progress) * 0.06));
+    transform-origin: center 65%;
+  }
+  .hero-scene {
+    transform: perspective(1000px) rotateX(var(--tilt-x, 0deg))
+      rotateY(var(--tilt-y, 0deg));
+    transition: transform 800ms var(--ease-out);
+  }
+  .abstract-composition {
+    overflow: visible;
+    animation: scene-arrival 1400ms 100ms var(--ease-out) backwards;
+  }
+  .geometry-base {
+    animation: base-arrival 1500ms 150ms var(--ease-out) backwards;
+  }
+  .geometry-form {
+    animation: form-arrival 1600ms var(--ease-out) backwards;
+    transform: translateY(calc(var(--hero-progress) * var(--form-depth)));
+  }
+  .geometry-form-one {
+    --form-depth: -34px;
+    animation-delay: 250ms;
+  }
+  .geometry-form-two {
+    --form-depth: -76px;
+    animation-delay: 390ms;
+  }
+  .geometry-form-three {
+    --form-depth: -18px;
+    animation-delay: 530ms;
+  }
+
+  /* Every reveal runs once. Content stays settled when scrolling back. */
+  .motion-ready .reveal {
+    opacity: 0;
+    transform: translate3d(0, 34px, 0);
+    transition:
+      opacity 850ms var(--ease-out),
+      transform 1100ms var(--ease-out);
+  }
+  .motion-ready .reveal[data-revealed="true"] {
+    opacity: 1;
+    transform: none;
+  }
+  .motion-ready .project-art.reveal {
+    transform: perspective(1200px) translate3d(0, 52px, 0) rotateX(7deg)
+      scale(0.94);
+    transform-origin: center 85%;
+    transition:
+      opacity 900ms var(--ease-out),
+      transform 1400ms var(--ease-out),
+      box-shadow 650ms var(--ease-out);
+  }
+  .motion-ready .project-art.reveal[data-revealed="true"] {
+    transform: none;
+  }
+  .project-art > :is(.telemetry-preview, .deferred-preview) {
+    transform: perspective(1100px) rotateX(var(--tilt-x, 0deg))
+      rotateY(var(--tilt-y, 0deg));
+    transition: transform 750ms var(--ease-out);
+  }
+  .motion-ready
+    :is(.project-copy, .education-inner, .contact-main)[data-revealed="true"]
+    > *,
+  .motion-ready .skills-section[data-revealed="true"] .skills-list > div {
+    animation: detail-arrival 850ms var(--ease-out) backwards;
+    animation-delay: 80ms;
+  }
+  .motion-ready
+    :is(.project-copy, .education-inner, .contact-main)[data-revealed="true"]
+    > :nth-child(2),
+  .motion-ready
+    .skills-section[data-revealed="true"]
+    .skills-list
+    > :nth-child(2) {
+    animation-delay: 150ms;
+  }
+  .motion-ready .project-copy[data-revealed="true"] > :nth-child(3),
+  .motion-ready
+    .skills-section[data-revealed="true"]
+    .skills-list
+    > :nth-child(3) {
+    animation-delay: 220ms;
+  }
+  .motion-ready .project-copy[data-revealed="true"] > :nth-child(4),
+  .motion-ready
+    .skills-section[data-revealed="true"]
+    .skills-list
+    > :nth-child(4) {
+    animation-delay: 290ms;
+  }
+  .motion-ready .project-copy[data-revealed="true"] > :nth-child(5) {
+    animation-delay: 360ms;
+  }
+  .motion-ready .project-copy[data-revealed="true"] > :nth-child(6) {
+    animation-delay: 420ms;
+  }
+  /* Keyboard focus must be visible immediately, even during an entrance. */
+  [data-focus-revealed="true"] {
+    animation: none !important;
+  }
+  .motion-ready .reveal[data-focus-revealed="true"] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .motion-ready .reveal[data-focus-revealed="true"] > * {
+    animation: none !important;
+  }
+  .motion-ready .telemetry-art[data-revealed="true"] .measurement-track i {
+    transform-origin: left;
+    animation: reading-arrival 1100ms 350ms var(--ease-out) backwards;
+  }
+  .motion-ready
+    .telemetry-art[data-revealed="true"]
+    .measurement:nth-child(2)
+    i {
+    animation-delay: 430ms;
+  }
+  .motion-ready
+    .telemetry-art[data-revealed="true"]
+    .measurement:nth-child(3)
+    i {
+    animation-delay: 510ms;
+  }
+  .motion-ready
+    .telemetry-art[data-revealed="true"]
+    .measurement:nth-child(4)
+    i {
+    animation-delay: 590ms;
+  }
+
+  .button {
+    transition:
+      background 300ms ease,
+      transform 500ms var(--ease-soft),
+      box-shadow 500ms var(--ease-out);
+  }
+  .button svg,
+  .text-link svg,
+  .contact-links a svg,
+  .hero-baseline a svg,
+  .site-footer a svg {
+    transition: transform 450ms var(--ease-out);
+  }
+  .button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px -12px #29272275;
+  }
+  .button:hover svg {
+    transform: translateX(4px);
+  }
+  .button:active {
+    transform: translateY(0) scale(0.97);
+  }
+  .text-link:hover svg,
+  .contact-links a:hover svg {
+    transform: translate(3px, -3px);
+  }
+  .hero-baseline a:hover svg {
+    transform: translateY(3px) rotate(90deg);
+  }
+  .site-footer a:hover svg {
+    transform: translateY(-3px) rotate(-90deg);
+  }
+  .close-dialog {
+    transition:
+      transform 400ms var(--ease-out),
+      background 250ms ease;
+  }
+  .close-dialog:hover {
+    transform: rotate(90deg);
+  }
+  .close-dialog:active {
+    transform: rotate(90deg) scale(0.9);
+  }
+  .project-dialog[open] {
+    animation: dialog-arrival 500ms var(--ease-out) backwards;
+  }
+  .project-dialog[open]::backdrop {
+    animation: backdrop-arrival 450ms ease backwards;
+  }
+  .project-dialog[open].is-closing {
+    animation: dialog-departure 200ms ease-in forwards;
+  }
+  .project-dialog[open].is-closing::backdrop {
+    animation: backdrop-arrival 200ms ease reverse forwards;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .project-art:hover {
+      box-shadow: 0 25px 55px -35px #50402b55;
+    }
+  }
+  @media (max-width: 640px) {
+    .hero-geometry {
+      /* Touch scrolling gets a smaller, quieter range of depth. */
+      transform: translate3d(0, calc(var(--hero-progress) * -12px), 0);
+    }
+    .geometry-form {
+      --form-depth: -18px;
+    }
+    .geometry-form-two {
+      --form-depth: -34px;
+    }
+    .motion-ready .reveal {
+      transition-duration: 700ms, 900ms;
+    }
+    .motion-ready .project-art.reveal:not([data-revealed="true"]) {
+      transform: translate3d(0, 28px, 0) scale(0.97);
+    }
+    .navigation {
+      display: flex;
+      visibility: hidden;
+      opacity: 0;
+      translate: 0 -8px;
+      pointer-events: none;
+      transition:
+        opacity 220ms ease,
+        translate 400ms var(--ease-out),
+        visibility 0s 220ms;
+    }
+    .navigation.is-open {
+      visibility: visible;
+      opacity: 1;
+      translate: 0 0;
+      pointer-events: auto;
+      transition-delay: 0s;
+    }
+    .navigation.is-open a {
+      animation: detail-arrival 450ms var(--ease-out) backwards;
+    }
+    .navigation.is-open a:nth-child(2) {
+      animation-delay: 40ms;
+    }
+    .navigation.is-open a:nth-child(3) {
+      animation-delay: 80ms;
+    }
+    .navigation.is-open a:nth-child(4) {
+      animation-delay: 120ms;
+    }
+    .navigation a::after {
+      display: none;
+    }
+  }
+}
+
+@keyframes soft-arrival {
+  from {
+    opacity: 0;
+    filter: blur(5px);
+    translate: 0 26px;
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    translate: 0 0;
+  }
+}
+@keyframes scene-arrival {
+  from {
+    opacity: 0;
+    scale: 0.94;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+@keyframes base-arrival {
+  from {
+    translate: 0 28px;
+  }
+  to {
+    translate: 0 0;
+  }
+}
+@keyframes form-arrival {
+  from {
+    opacity: 0;
+    translate: 0 -70px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+@keyframes detail-arrival {
+  from {
+    opacity: 0;
+    translate: 0 14px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+@keyframes reading-arrival {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes dialog-arrival {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes backdrop-arrival {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes dialog-departure {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+}
