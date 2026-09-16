@@ -19,18 +19,6 @@ npm run preview  # Serve the production build locally
 npm test         # Desktop and mobile browser checks
 ```
 
-The browser tests use installed Google Chrome. To use Playwright-managed Chromium instead, run `npx playwright install chromium` and remove `channel: 'chrome'` from `playwright.config.ts`.
-
-## Updating the portfolio
-
-- `src/content.ts`: profile, education, contact links, project descriptions, contributions, dates, technologies, preview disclosures, and skills.
-- `src/App.tsx`: page sections, project dialogs, navigation, and the abstract hero composition.
-- `src/styles.css`: layouts, responsive behavior, colors, and motion.
-- `src/motion.css` and `src/hooks/usePageMotion.ts`: entrance timing, scroll depth, pointer interactions, and motion preferences.
-- `src/components/ProjectPreviews.tsx`: project interface illustrations, with layouts suited to each project.
-- `public/favicon.svg` and `index.html`: original initials favicon and page metadata.
-
-All three projects describe finished work. Their illustrated interfaces are explicitly labeled as concept previews; telemetry readings and financial figures are sample data. Project details retain the supplied contributions and technologies, including the distinction between Dipesh’s backend work and his collaborator’s embedded hardware work. Contact links point to the supplied GitHub profile, LinkedIn profile, and email address.
 
 ## Motion and accessibility
 
