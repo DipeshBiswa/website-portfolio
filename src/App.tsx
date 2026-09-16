@@ -3,6 +3,7 @@ import { profile, projects, skills, type Project } from "./content";
 import Icon from "./components/Icon";
 import AbstractComposition from "./components/AbstractComposition";
 import DeferredPreview from "./components/DeferredPreview";
+import ProfileLinks from "./components/ProfileLinks";
 import usePageMotion from "./hooks/usePageMotion";
 
 const FinancePreview = lazy(() =>
@@ -67,6 +68,7 @@ function Navigation() {
             </a>
           ))}
         </nav>
+        <ProfileLinks />
       </div>
     </header>
   );
@@ -155,9 +157,10 @@ function Education() {
 const measurements = [
   { name: "Soil moisture", value: "42", unit: "%", range: 42 },
   { name: "Sunlight", value: "680", unit: "lx", range: 68 },
-  { name: "Temperature", value: "23.4", unit: "°C", range: 54 },
-  { name: "Humidity", value: "58", unit: "%", range: 58 },
+  { name: "Temperature", value: "74.1", unit: "°F", range: 54 },
 ];
+const humidityStates = ["Needs water", "Normal", "Too much water"] as const;
+const humidityState: (typeof humidityStates)[number] = "Normal";
 
 function TelemetryPreview() {
   return (
@@ -165,7 +168,7 @@ function TelemetryPreview() {
       <div
         className="plant-dashboard"
         role="img"
-        aria-label="Concept preview of a telemetry dashboard with sample soil moisture, sunlight, temperature, humidity, and a plant-care recommendation."
+        aria-label={`Concept preview of a telemetry dashboard with sample soil moisture, sunlight, temperature of 74.1 degrees Fahrenheit, humidity state ${humidityState}, and a plant-care recommendation. Humidity states are Needs water, Too much water, or Normal.`}
       >
         <div className="telemetry-topline">
           <span>ENVIRONMENT / OVERVIEW</span>
@@ -192,6 +195,19 @@ function TelemetryPreview() {
               </div>
             </div>
           ))}
+          <div className="measurement measurement-state">
+            <span>Humidity</span>
+            <strong>{humidityState}</strong>
+            <div className="humidity-state-scale" aria-hidden="true">
+              {humidityStates.map((state) => (
+                <i
+                  key={state}
+                  data-active={state === humidityState}
+                  title={state}
+                />
+              ))}
+            </div>
+          </div>
         </div>
         <div className="care-recommendation">
           <p className="recommendation-label">CARE RECOMMENDATION</p>

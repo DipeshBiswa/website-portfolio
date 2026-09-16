@@ -319,19 +319,27 @@ test("sections fit the viewport at phone, tablet, and desktop widths", async ({
 });
 
 test("contact and profile links use real destinations", async ({ page }) => {
-  const githubLinks = page.getByRole("link", { name: "GitHub", exact: true });
-  await expect(githubLinks).toHaveCount(2);
-  for (const link of await githubLinks.all()) {
-    await expect(link).toHaveAttribute(
-      "href",
-      "https://github.com/DipeshBiswa",
-    );
-    await expect(link).toHaveAttribute("target", "_blank");
-    await expect(link).toHaveAttribute("rel", /noreferrer|noopener/);
+  for (const profile of [
+    { name: "GitHub", href: "https://github.com/DipeshBiswa", count: 3 },
+    {
+      name: "LinkedIn",
+      href: "https://www.linkedin.com/in/dipesh-biswa/",
+      count: 2,
+    },
+  ]) {
+    const links = page.getByRole("link", { name: profile.name, exact: true });
+    await expect(links).toHaveCount(profile.count);
+    for (const link of await links.all()) {
+      await expect(link).toHaveAttribute("href", profile.href);
+      await expect(link).toHaveAttribute("target", "_blank");
+      await expect(link).toHaveAttribute("rel", /noreferrer|noopener/);
+    }
+    const headerLink = page
+      .getByRole("banner")
+      .getByRole("link", { name: profile.name, exact: true });
+    await expect(headerLink).toBeVisible();
+    await expect(headerLink).toBeInViewport();
   }
-  await expect(
-    page.getByRole("link", { name: "LinkedIn", exact: true }),
-  ).toHaveAttribute("href", "https://www.linkedin.com/in/dipesh-biswa/");
   await expect(
     page.getByRole("link", { name: "Email Dipesh Biswa", exact: true }),
   ).toHaveAttribute("href", "mailto:DB4048@g.rit.edu");

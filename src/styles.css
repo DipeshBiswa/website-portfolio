@@ -172,11 +172,14 @@ h2 {
   justify-content: space-between;
 }
 .wordmark {
+  flex-shrink: 0;
   font-size: 18px;
   font-weight: 550;
   letter-spacing: -0.55px;
 }
 .navigation {
+  order: 1;
+  margin-left: auto;
   display: flex;
   gap: 34px;
   align-items: center;
@@ -195,7 +198,11 @@ h2 {
   border-bottom: 1px solid var(--accent);
 }
 .menu-toggle {
+  order: 3;
   display: none;
+}
+.header-socials {
+  order: 2;
 }
 
 /* An introduction with a small architectural composition, not a product hero. */
@@ -491,6 +498,22 @@ h2 {
   height: 2px;
   background: var(--accent);
   display: block;
+}
+.measurement-state > strong {
+  letter-spacing: -0.8px;
+}
+.humidity-state-scale {
+  display: flex;
+  gap: 4px;
+  margin-top: 12px;
+  height: 2px;
+}
+.humidity-state-scale i {
+  flex: 1;
+  background: #e9e2d8;
+}
+.humidity-state-scale i[data-active="true"] {
+  background: var(--accent-ink);
 }
 .care-recommendation {
   border-top: 1px solid var(--line);
@@ -982,6 +1005,9 @@ h2 {
   }
 }
 @media (max-width: 850px) {
+  .navigation {
+    gap: 20px;
+  }
   .container {
     width: calc(100% - 56px);
   }
@@ -1199,6 +1225,7 @@ h2 {
     letter-spacing: -0.5px;
   }
   .menu-toggle {
+    margin-left: 8px;
     width: 40px;
     height: 40px;
     display: flex;
@@ -1227,6 +1254,7 @@ h2 {
     left: 0;
     right: 0;
     top: 70px;
+    margin-left: 0;
     display: none;
     flex-direction: column;
     align-items: stretch;
