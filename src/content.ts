@@ -8,7 +8,6 @@ export const profile = {
   education: "Bachelor of Science in Software Engineering",
   school: "Rochester Institute of Technology",
   graduation: "May 2029",
-  gpa: "3.5",
 };
 
 export type Project = {
