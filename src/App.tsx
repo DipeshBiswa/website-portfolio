@@ -132,10 +132,6 @@ function Education() {
               <dt>Expected graduation</dt>
               <dd>{profile.graduation}</dd>
             </div>
-            <div>
-              <dt>GPA</dt>
-              <dd>{profile.gpa}</dd>
-            </div>
           </dl>
         </div>
       </div>
