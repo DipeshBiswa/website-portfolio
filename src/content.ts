@@ -25,6 +25,13 @@ export type Project = {
   technologies: string[];
   architecture: string;
   previewNote: string;
+  screenshot: {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+    caption: string;
+  };
 };
 
 export const projects: Project[] = [
@@ -59,7 +66,14 @@ export const projects: Project[] = [
     architecture:
       "ESP32 → Spring Boot REST API → PostgreSQL → Claude-powered analysis. My focus was the backend and API integrations; my collaborator handled embedded hardware engineering.",
     previewNote:
-      "Concept preview with sample data. The telemetry dashboard is a portfolio illustration, not an application screenshot.",
+      "Application screenshot showing the LeafLink plant dashboard, reading history, and AI plant assistant.",
+    screenshot: {
+      src: "/projects/plant-monitor.png",
+      alt: "LeafLink dashboard for a spider plant, with plant data, reading history, and an AI plant-care assistant.",
+      width: 1920,
+      height: 1303,
+      caption: "LeafLink · Plant dashboard",
+    },
   },
   {
     id: "finance",
@@ -92,7 +106,14 @@ export const projects: Project[] = [
     architecture:
       "React interface → Spring Boot REST endpoints with Spring Security and JWT → Plaid integration and PostgreSQL transaction storage.",
     previewNote:
-      "Concept preview with sample data. The transactions, categories, and spending chart illustrate the interface; they are not real banking records or an application screenshot.",
+      "Application screenshot showing FinanceApp’s transactions dashboard, spending categories, and bank connection control.",
+    screenshot: {
+      src: "/projects/finance-tracker.png",
+      alt: "FinanceApp transactions dashboard with a spending summary, category filters, transaction history, and a Connect Bank button.",
+      width: 2048,
+      height: 1076,
+      caption: "FinanceApp · Transactions dashboard",
+    },
   },
   {
     id: "auth",
@@ -128,7 +149,14 @@ export const projects: Project[] = [
     architecture:
       "React + Axios → Spring Security filter chain → JWT validation → role-based access to protected REST endpoints. PostgreSQL stored the user and permission model.",
     previewNote:
-      "Concept preview. The sign-in interface and authentication flow are portfolio illustrations, not interactive authentication features.",
+      "Application screenshot showing the FinanceApp sign-in interface, with username and password fields and a registration link.",
+    screenshot: {
+      src: "/projects/secure-auth.png",
+      alt: "FinanceApp sign-in screen with username and password fields, a Sign In button, and a Register link.",
+      width: 1914,
+      height: 1280,
+      caption: "Authentication · Sign-in screen",
+    },
   },
 ];
 

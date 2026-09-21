@@ -1,21 +1,10 @@
-import { lazy, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { profile, projects, skills, type Project } from "./content";
 import Icon from "./components/Icon";
 import AbstractComposition from "./components/AbstractComposition";
-import DeferredPreview from "./components/DeferredPreview";
+import ProjectScreenshot from "./components/ProjectScreenshot";
 import ProfileLinks from "./components/ProfileLinks";
 import usePageMotion from "./hooks/usePageMotion";
-
-const FinancePreview = lazy(() =>
-  import("./components/ProjectPreviews").then((module) => ({
-    default: module.FinancePreview,
-  })),
-);
-const AuthPreview = lazy(() =>
-  import("./components/ProjectPreviews").then((module) => ({
-    default: module.AuthPreview,
-  })),
-);
 
 function Navigation() {
   const [open, setOpen] = useState(false);
@@ -154,77 +143,6 @@ function Education() {
   );
 }
 
-const measurements = [
-  { name: "Soil moisture", value: "42", unit: "%", range: 42 },
-  { name: "Sunlight", value: "680", unit: "lx", range: 68 },
-  { name: "Temperature", value: "74.1", unit: "°F", range: 54 },
-];
-const humidityStates = ["Needs water", "Normal", "Too much water"] as const;
-const humidityState: (typeof humidityStates)[number] = "Normal";
-
-function TelemetryPreview() {
-  return (
-    <figure className="telemetry-preview">
-      <div
-        className="plant-dashboard"
-        role="img"
-        aria-label={`Concept preview of a telemetry dashboard with sample soil moisture, sunlight, temperature of 74.1 degrees Fahrenheit, humidity state ${humidityState}, and a plant-care recommendation. Humidity states are Needs water, Too much water, or Normal.`}
-      >
-        <div className="telemetry-topline">
-          <span>ENVIRONMENT / OVERVIEW</span>
-          <span>Sample data</span>
-        </div>
-        <div className="telemetry-heading">
-          <h4>
-            From readings
-            <br />
-            to recommendations.
-          </h4>
-          <span>01—04</span>
-        </div>
-        <div className="measurement-grid">
-          {measurements.map((m) => (
-            <div className="measurement" key={m.name}>
-              <span>{m.name}</span>
-              <strong>
-                {m.value}
-                <small>{m.unit}</small>
-              </strong>
-              <div className="measurement-track" aria-hidden="true">
-                <i style={{ width: `${m.range}%` }} />
-              </div>
-            </div>
-          ))}
-          <div className="measurement measurement-state">
-            <span>Humidity</span>
-            <strong>{humidityState}</strong>
-            <div className="humidity-state-scale" aria-hidden="true">
-              {humidityStates.map((state) => (
-                <i
-                  key={state}
-                  data-active={state === humidityState}
-                  title={state}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-        <div className="care-recommendation">
-          <p className="recommendation-label">CARE RECOMMENDATION</p>
-          <p>
-            Moisture looks balanced. Keep your plant in bright, indirect light
-            and check the soil before watering again.
-          </p>
-          <span>Illustrative Claude-powered analysis</span>
-        </div>
-      </div>
-      <figcaption>
-        Concept preview <span>Sample data</span>
-      </figcaption>
-    </figure>
-  );
-}
-
 function ProjectLink({
   project,
   onDetails,
@@ -287,7 +205,7 @@ function Projects({ onDetails }: { onDetails: (project: Project) => void }) {
             <ProjectLink project={projects[0]} onDetails={onDetails} />
           </div>
           <div className="project-art telemetry-art reveal">
-            <TelemetryPreview />
+            <ProjectScreenshot project={projects[0]} />
           </div>
           <div className="project-footnote reveal">
             <span>THE DATA PATH</span>
@@ -314,9 +232,7 @@ function Projects({ onDetails }: { onDetails: (project: Project) => void }) {
             <ProjectLink project={projects[1]} onDetails={onDetails} />
           </div>
           <div className="project-art finance-art reveal">
-            <DeferredPreview>
-              <FinancePreview />
-            </DeferredPreview>
+            <ProjectScreenshot project={projects[1]} />
           </div>
         </article>
         <article
@@ -334,9 +250,7 @@ function Projects({ onDetails }: { onDetails: (project: Project) => void }) {
             <ProjectLink project={projects[2]} onDetails={onDetails} />
           </div>
           <div className="project-art auth-art reveal">
-            <DeferredPreview>
-              <AuthPreview />
-            </DeferredPreview>
+            <ProjectScreenshot project={projects[2]} />
           </div>
         </article>
       </div>

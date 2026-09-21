@@ -423,128 +423,6 @@ h2 {
   border: 1px solid #e9e1d7;
   border-radius: 9px;
 }
-.telemetry-preview {
-  margin: 0;
-}
-.plant-dashboard {
-  padding: 24px;
-  background: #fffdfa;
-  border: 1px solid #e0d7cb;
-  border-radius: 6px;
-}
-.telemetry-topline {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  font-size: 8px;
-  letter-spacing: 0.9px;
-  color: var(--muted);
-  padding-bottom: 16px;
-  border-bottom: 1px solid #e8e1d8;
-}
-.telemetry-topline > span:last-child {
-  font-size: 8px;
-  letter-spacing: 0;
-}
-.telemetry-heading {
-  display: flex;
-  justify-content: space-between;
-  gap: 15px;
-  align-items: end;
-  margin-block: 25px;
-}
-.telemetry-heading h4 {
-  font-size: 23px;
-  letter-spacing: -0.9px;
-  line-height: 1.16;
-}
-.telemetry-heading > span {
-  font-family: ui-monospace, SFMono-Regular, monospace;
-  font-size: 9px;
-  color: var(--muted);
-}
-.measurement-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 26px 27px;
-  padding-block: 1px 26px;
-}
-.measurement > span {
-  font-size: 10px;
-  color: var(--muted);
-  display: block;
-}
-.measurement > strong {
-  font-size: 32px;
-  font-weight: 400;
-  letter-spacing: -1.25px;
-  display: block;
-  line-height: 1;
-  margin-top: 12px;
-}
-.measurement > strong > small {
-  font-size: 13px;
-  margin-left: 4px;
-  letter-spacing: 0;
-  color: var(--muted);
-}
-.measurement-track {
-  height: 2px;
-  background: #e9e2d8;
-  margin-top: 12px;
-}
-.measurement-track i {
-  height: 2px;
-  background: var(--accent);
-  display: block;
-}
-.measurement-state > strong {
-  letter-spacing: -0.8px;
-}
-.humidity-state-scale {
-  display: flex;
-  gap: 4px;
-  margin-top: 12px;
-  height: 2px;
-}
-.humidity-state-scale i {
-  flex: 1;
-  background: #e9e2d8;
-}
-.humidity-state-scale i[data-active="true"] {
-  background: var(--accent-ink);
-}
-.care-recommendation {
-  border-top: 1px solid var(--line);
-  padding-top: 18px;
-}
-.care-recommendation .recommendation-label {
-  font-size: 8px;
-  letter-spacing: 1px;
-  color: var(--accent-ink);
-  margin-bottom: 7px;
-}
-.care-recommendation > p:not(.recommendation-label) {
-  font-size: 10px;
-  line-height: 1.85;
-  color: #5c564e;
-}
-.care-recommendation > span {
-  font-size: 8px;
-  color: var(--muted);
-  display: block;
-  margin-top: 9px;
-}
-.telemetry-preview figcaption {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  margin-top: 16px;
-  padding-inline: 1px;
-  color: #675d50;
-  font-size: 9px;
-}
 .project-footnote {
   grid-column: 1 / -1;
   display: flex;
@@ -599,16 +477,6 @@ h2 {
   background: #e9e4dc;
   border: 1px solid #e2dbd0;
   border-radius: 9px;
-}
-.deferred-preview {
-  width: 100%;
-  min-height: 0;
-}
-.preview-placeholder {
-  width: 100%;
-  aspect-ratio: 1.43;
-  background: #ffffff40;
-  border-radius: 5px;
 }
 
 /* Personal notes and experience use open editorial rows. */
@@ -984,15 +852,6 @@ h2 {
   .auth-art {
     padding: 19px;
   }
-  .plant-dashboard {
-    padding: 20px;
-  }
-  .telemetry-heading h4 {
-    font-size: 21px;
-  }
-  .telemetry-topline {
-    font-size: 6px;
-  }
   .about-intro,
   .skills-section,
   .experience-entry,
@@ -1107,47 +966,6 @@ h2 {
   .finance-art,
   .auth-art {
     padding: 14px;
-  }
-  .plant-dashboard {
-    padding: 16px;
-  }
-  .telemetry-heading h4 {
-    font-size: 18px;
-  }
-  .telemetry-heading {
-    margin-block: 20px;
-  }
-  .telemetry-heading > span {
-    font-size: 7px;
-  }
-  .measurement-grid {
-    gap: 20px;
-  }
-  .measurement > span {
-    font-size: 8px;
-  }
-  .measurement > strong {
-    font-size: 27px;
-  }
-  .measurement > strong > small {
-    font-size: 10px;
-  }
-  .care-recommendation > p:not(.recommendation-label) {
-    font-size: 9px;
-  }
-  .care-recommendation .recommendation-label,
-  .care-recommendation > span {
-    font-size: 7px;
-  }
-  .telemetry-topline {
-    letter-spacing: 0.3px;
-    font-size: 6px;
-  }
-  .telemetry-topline > span:last-child {
-    font-size: 7px;
-  }
-  .telemetry-preview figcaption {
-    font-size: 8px;
   }
   .project-footnote {
     gap: 17px;
@@ -1454,43 +1272,6 @@ h2 {
     padding: 16px;
     border-radius: 7px;
   }
-  .plant-dashboard {
-    padding: 19px;
-  }
-  .telemetry-topline {
-    font-size: 6px;
-    letter-spacing: 0.5px;
-    padding-bottom: 14px;
-  }
-  .telemetry-heading h4 {
-    font-size: 21px;
-  }
-  .measurement-grid {
-    gap: 22px;
-    padding-bottom: 23px;
-  }
-  .measurement > span {
-    font-size: 9px;
-  }
-  .measurement > strong {
-    font-size: 30px;
-  }
-  .measurement > strong > small {
-    font-size: 11px;
-  }
-  .care-recommendation .recommendation-label {
-    font-size: 7px;
-  }
-  .care-recommendation > p:not(.recommendation-label) {
-    font-size: 9px;
-  }
-  .care-recommendation > span {
-    font-size: 7px;
-  }
-  .telemetry-preview figcaption {
-    font-size: 8px;
-    margin-top: 13px;
-  }
   .project-footnote {
     grid-column: 1;
     display: block;
@@ -1730,15 +1511,6 @@ h2 {
   .finance-art,
   .auth-art {
     padding: 12px;
-  }
-  .plant-dashboard {
-    padding: 15px;
-  }
-  .telemetry-heading h4 {
-    font-size: 19px;
-  }
-  .telemetry-topline {
-    font-size: 5px;
   }
   .skills-list > div {
     grid-template-columns: 90px 1fr;

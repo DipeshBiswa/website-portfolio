@@ -121,7 +121,7 @@
   .motion-ready .project-art.reveal[data-revealed="true"] {
     transform: none;
   }
-  .project-art > :is(.telemetry-preview, .deferred-preview) {
+  .project-art > .project-screenshot {
     transform: perspective(1100px) rotateX(var(--tilt-x, 0deg))
       rotateY(var(--tilt-y, 0deg));
     transition: transform 750ms var(--ease-out);
@@ -174,29 +174,6 @@
   .motion-ready .reveal[data-focus-revealed="true"] > * {
     animation: none !important;
   }
-  .motion-ready .telemetry-art[data-revealed="true"] .measurement-track i {
-    transform-origin: left;
-    animation: reading-arrival 1100ms 350ms var(--ease-out) backwards;
-  }
-  .motion-ready
-    .telemetry-art[data-revealed="true"]
-    .measurement:nth-child(2)
-    i {
-    animation-delay: 430ms;
-  }
-  .motion-ready
-    .telemetry-art[data-revealed="true"]
-    .measurement:nth-child(3)
-    i {
-    animation-delay: 510ms;
-  }
-  .motion-ready
-    .telemetry-art[data-revealed="true"]
-    .measurement:nth-child(4)
-    i {
-    animation-delay: 590ms;
-  }
-
   .button {
     transition:
       background 300ms ease,
@@ -360,14 +337,6 @@
   to {
     opacity: 1;
     translate: 0 0;
-  }
-}
-@keyframes reading-arrival {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
   }
 }
 @keyframes dialog-arrival {

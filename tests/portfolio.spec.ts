@@ -1,7 +1,20 @@
-import { expect, test, type Page } from "@playwright/test";
+import { expect, test, type Locator, type Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
 const runtimeErrors = new WeakMap<Page, string[]>();
+
+async function expectLoadedProjectImage(image: Locator) {
+  await expect(image).toBeVisible();
+  await expect(image).toHaveAccessibleName(/\S/);
+  await expect
+    .poll(() =>
+      image.evaluate(
+        (element: HTMLImageElement) =>
+          element.complete && element.naturalWidth > 0,
+      ),
+    )
+    .toBe(true);
+}
 
 test.beforeEach(async ({ page }) => {
   const errors: string[] = [];
@@ -25,11 +38,11 @@ test("page and project details pass automated accessibility checks", async ({
   page,
 }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
-  // Load the below-the-fold concept previews before auditing their labels.
-  await page.locator(".finance-art").scrollIntoViewIfNeeded();
-  await expect(page.locator(".finance-stage")).toBeVisible();
-  await page.locator(".auth-art").scrollIntoViewIfNeeded();
-  await expect(page.locator(".auth-stage")).toBeVisible();
+  // Load the project screenshots before auditing their accessible labels.
+  for (const image of await page.locator(".project-screenshot img").all()) {
+    await image.scrollIntoViewIfNeeded();
+    await expectLoadedProjectImage(image);
+  }
   const audit = () =>
     new AxeBuilder({ page })
       .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
@@ -91,6 +104,9 @@ test("presents the portfolio and captures its responsive layout", async ({
   await expect(page.locator('.reveal:not([data-revealed="true"])')).toHaveCount(
     0,
   );
+  for (const image of await page.locator(".project-screenshot img").all()) {
+    await expectLoadedProjectImage(image);
+  }
   await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
   await page.screenshot({
     path: testInfo.outputPath("full-page.png"),
@@ -143,8 +159,9 @@ test("presents three projects without development-status labels", async ({
   ]) {
     const project = page.locator(selector);
     await expect(project).toHaveCount(1);
-    await project.scrollIntoViewIfNeeded();
-    await expect(project).toContainText(/concept preview/i);
+    const image = project.locator(".project-screenshot").getByRole("img");
+    await image.scrollIntoViewIfNeeded();
+    await expectLoadedProjectImage(image);
   }
   await expect(page.locator("main")).not.toContainText(
     /in development|development status|work in progress|\bcompleted\b/i,

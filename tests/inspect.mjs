@@ -23,8 +23,13 @@ async function revealPage(page) {
   await page.waitForFunction(
     () => !document.querySelector('.reveal:not([data-revealed="true"])'),
   );
-  await page.locator(".finance-stage").waitFor({ state: "attached" });
-  await page.locator(".auth-stage").waitFor({ state: "attached" });
+  await page.waitForFunction(() => {
+    const images = [...document.querySelectorAll(".project-screenshot img")];
+    return (
+      images.length === 3 &&
+      images.every((image) => image.complete && image.naturalWidth > 0)
+    );
+  });
 }
 
 try {
