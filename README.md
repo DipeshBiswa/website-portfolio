@@ -1,6 +1,6 @@
 # Dipesh Biswa — Portfolio
 
-A React, TypeScript, and Tailwind CSS portfolio for Dipesh Biswa, a Software Engineering student at Rochester Institute of Technology. W
+A React, TypeScript, and Tailwind CSS portfolio. W
 
 ## Run locally
 
