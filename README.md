@@ -1,6 +1,6 @@
 # Dipesh Biswa — Portfolio
 
-A React, TypeScript, and Tailwind CSS portfolio. W
+A React, TypeScript, and Tailwind CSS portfolio.
 
 ## Run locally
 
